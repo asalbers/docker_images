@@ -10,7 +10,7 @@ COPY . .
 RUN dotnet publish -c release -o /app --no-restore
 
 # final stage/image
-FROM mcr.microsoft.com/dotnet/runtime:5.0
+FROM mcr.microsoft.com/dotnet/runtime:5.0 as final
 WORKDIR /app
 COPY --from=build /app .
 ENTRYPOINT ["dotnet", "dotnetapp.dll"]
